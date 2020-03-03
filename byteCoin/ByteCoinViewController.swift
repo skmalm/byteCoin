@@ -10,5 +10,11 @@ import UIKit
 
 class ByteCoinViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    @IBOutlet weak var resultBackgroundView: UIView! { didSet {
+        resultBackgroundView.layer.cornerRadius = resultBackgroundView.frame.height / 2
+    }}
+    
 }
 
