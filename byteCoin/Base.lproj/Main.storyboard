@@ -18,12 +18,12 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ByteCoin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZh-np-giN">
                                 <rect key="frame" x="10" y="64" width="394" height="60"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="50"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCw-5F-Nqa">
-                                <rect key="frame" x="0.0" y="646" width="453" height="216"/>
+                                <rect key="frame" x="0.0" y="646" width="414" height="216"/>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" name="BackgroundColor"/>
@@ -45,7 +45,7 @@
     </scenes>
     <resources>
         <namedColor name="BackgroundColor">
-            <color red="0.50434130430000002" green="0.92546868319999998" blue="0.92532414200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.50400000810623169" green="0.92500001192092896" blue="0.92500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
