@@ -13,6 +13,7 @@ class ByteCoinViewController: UIViewController {
     // MARK: - Properties
     
     let currencyModel = CurrencyModel()
+    let conversionManager = ConversionManager()
     
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
@@ -25,6 +26,7 @@ class ByteCoinViewController: UIViewController {
     override func viewDidLoad() {
         currencyPicker.delegate = self
         currencyPicker.dataSource = currencyModel
+        conversionManager.fetchAllRates()
     }
 }
 
