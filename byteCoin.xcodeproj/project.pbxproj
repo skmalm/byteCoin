@@ -15,7 +15,7 @@
 		9E3A21F9240BEEE6004894B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3A21F7240BEEE6004894B8 /* Main.storyboard */; };
 		9E3A21FB240BEEEB004894B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3A21FA240BEEEB004894B8 /* Assets.xcassets */; };
 		9E3A21FE240BEEEB004894B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3A21FC240BEEEB004894B8 /* LaunchScreen.storyboard */; };
-		9E499D59240F1DBD0094AACD /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E499D58240F1DBD0094AACD /* CurrencyModel.swift */; };
+		9E499D59240F1DBD0094AACD /* ConversionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E499D58240F1DBD0094AACD /* ConversionModel.swift */; };
 		9EFA657D24102542005F8733 /* ConversionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFA657C24102542005F8733 /* ConversionManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +30,7 @@
 		9E3A21FA240BEEEB004894B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E3A21FD240BEEEB004894B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E3A21FF240BEEEB004894B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E499D58240F1DBD0094AACD /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		9E499D58240F1DBD0094AACD /* ConversionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionModel.swift; sourceTree = "<group>"; };
 		9EFA657C24102542005F8733 /* ConversionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +87,7 @@
 		9E499D5A240F1DC40094AACD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E499D58240F1DBD0094AACD /* CurrencyModel.swift */,
+				9E499D58240F1DBD0094AACD /* ConversionModel.swift */,
 				9E096D3124100F8E008FBCCB /* SensitiveConstants.swift */,
 				9EFA657C24102542005F8733 /* ConversionManager.swift */,
 				9E1B081524104DAE00F12719 /* ConversionData.swift */,
@@ -168,7 +168,7 @@
 			files = (
 				9E3A21F6240BEEE6004894B8 /* ByteCoinViewController.swift in Sources */,
 				9E3A21F2240BEEE6004894B8 /* AppDelegate.swift in Sources */,
-				9E499D59240F1DBD0094AACD /* CurrencyModel.swift in Sources */,
+				9E499D59240F1DBD0094AACD /* ConversionModel.swift in Sources */,
 				9E3A21F4240BEEE6004894B8 /* SceneDelegate.swift in Sources */,
 				9E096D3224100F8E008FBCCB /* SensitiveConstants.swift in Sources */,
 				9E1B081624104DAE00F12719 /* ConversionData.swift in Sources */,

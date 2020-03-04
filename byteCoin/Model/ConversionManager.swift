@@ -14,6 +14,7 @@ struct ConversionManager {
     
     private let endpoint = "https://rest-sandbox.coinapi.io/"
     private let request = "v1/exchangerate/BTC?invert=false"
+    var delegate: ConversionManagerDelegate?
     
     // MARK: - Methods
     
@@ -27,21 +28,33 @@ struct ConversionManager {
             assert(response != nil, "No response from server")
             if let httpResponse = response as? HTTPURLResponse {
                 print("Response code: \(httpResponse.statusCode)")
-                self.parseJSON(exchangeRateData: data!)
+                if let conversionModel = self.parseJSON(exchangeRateData: data!) {
+                    self.delegate?.didGetRates(self, rates: conversionModel.rates)
+                }
             }
         }
         task.resume()
     }
     
-    func parseJSON( exchangeRateData: Data) {
+    func parseJSON( exchangeRateData: Data) -> ConversionModel? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(ConversionData.self, from: exchangeRateData)
-            print(decodedData)
+            return ConversionModel(fromConversionData: decodedData)
         } catch {
-            print(error)
+            delegate?.didFailWithError(self, error: .decodingError(error))
+            return nil
         }
     }
+}
+
+protocol ConversionManagerDelegate {
+    func didGetRates(_ conversionManager: ConversionManager, rates: [String: Double])
+    func didFailWithError(_ conversionManager: ConversionManager, error: ConversionManagerError)
+}
+
+enum ConversionManagerError: Error {
+    case decodingError(Error)
 }
 
 // MARK: - Sample API Call
