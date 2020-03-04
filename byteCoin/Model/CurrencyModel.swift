@@ -10,7 +10,7 @@ import UIKit
 
 class CurrencyModel: NSObject {
     
-    let currencies = [
+    private let currencies = [
         "AUD",
         "BRL",
         "CAD",
@@ -39,5 +39,15 @@ extension CurrencyModel: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         assert(row <= currencies.count, "Not enough currencies for picker rows")
         return currencies[row]
+    }
+}
+
+extension CurrencyModel: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return currencies.count
     }
 }

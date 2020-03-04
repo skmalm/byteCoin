@@ -74,6 +74,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="currencyLabel" destination="VXB-FU-AxA" id="HSg-hL-ba5"/>
                         <outlet property="currencyPicker" destination="eCw-5F-Nqa" id="qVm-bB-Kc7"/>
                         <outlet property="resultBackgroundView" destination="CGJ-IL-jKc" id="TE3-JD-zjB"/>
                     </connections>
@@ -92,7 +93,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ResultBackgroundColor">
-            <color red="0.42371076349999998" green="0.71762323380000004" blue="0.72568815949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.42399999499320984" green="0.71799999475479126" blue="0.72600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

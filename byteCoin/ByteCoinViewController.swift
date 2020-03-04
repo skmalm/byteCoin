@@ -14,6 +14,7 @@ class ByteCoinViewController: UIViewController {
     
     let currencyModel = CurrencyModel()
     
+    @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var resultBackgroundView: UIView! { didSet {
         resultBackgroundView.layer.cornerRadius = resultBackgroundView.frame.height / 2
@@ -23,17 +24,6 @@ class ByteCoinViewController: UIViewController {
 
     override func viewDidLoad() {
         currencyPicker.delegate = currencyModel
-        currencyPicker.dataSource = self
+        currencyPicker.dataSource = currencyModel
     }
-}
-
-extension ByteCoinViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencyModel.currencies.count
-    }
-    
 }
