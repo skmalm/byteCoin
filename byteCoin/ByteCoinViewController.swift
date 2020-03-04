@@ -23,7 +23,19 @@ class ByteCoinViewController: UIViewController {
     // MARK: - Methods
 
     override func viewDidLoad() {
-        currencyPicker.delegate = currencyModel
+        currencyPicker.delegate = self
         currencyPicker.dataSource = currencyModel
+    }
+}
+
+extension ByteCoinViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        assert(row <= currencyModel.currencies.count, "Not enough currencies for picker rows")
+        return currencyModel.currencies[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        assert(row <= currencyModel.currencies.count, "No currency for selected picker row")
+        currencyLabel.text = currencyModel.currencies[row]
     }
 }
