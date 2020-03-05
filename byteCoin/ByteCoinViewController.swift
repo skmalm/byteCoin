@@ -21,6 +21,7 @@ class ByteCoinViewController: UIViewController {
                 self.currencyPicker.selectRow(usdRow, inComponent: 0, animated: true)
                 self.currencyPicker.delegate?.pickerView?(self.currencyPicker, didSelectRow: usdRow, inComponent: 0)
             }
+            self.currencyPicker.isUserInteractionEnabled = true
         }
     }}
     
@@ -34,6 +35,7 @@ class ByteCoinViewController: UIViewController {
     // MARK: - Methods
 
     override func viewDidLoad() {
+        currencyPicker.isUserInteractionEnabled = false
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
         conversionManager.delegate = self
@@ -67,10 +69,12 @@ extension ByteCoinViewController: UIPickerViewDataSource, UIPickerViewDelegate {
 extension ByteCoinViewController: ConversionManagerDelegate {
     func didGetRates(_ conversionManager: ConversionManager, rates: [String : Double]) {
         allRates = rates
+        URLSession.shared.invalidateAndCancel()
     }
     
     func didFailWithError(_ conversionManager: ConversionManager, error: ConversionManagerError) {
         print(error)
+        URLSession.shared.invalidateAndCancel()
     }
     
     

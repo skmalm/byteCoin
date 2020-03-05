@@ -24,19 +24,25 @@ struct ConversionManager {
         var request = URLRequest(url: url!)
         request.addValue(SensitiveConstants.coinAPIKey, forHTTPHeaderField: "X-CoinAPI-Key")
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            assert(data != nil, "Error getting data")
-            assert(response != nil, "No response from server")
+            if error != nil {
+                self.delegate?.didFailWithError(self, error: .dataTaskError(error!))
+            }
+            if response == nil {
+                self.delegate?.didFailWithError(self, error: .noResponse("No response from server"))
+            }
             if let httpResponse = response as? HTTPURLResponse {
                 print("Response code: \(httpResponse.statusCode)")
                 if let conversionModel = self.parseJSON(exchangeRateData: data!) {
                     self.delegate?.didGetRates(self, rates: conversionModel.rates)
                 }
+            } else {
+                self.delegate?.didFailWithError(self, error: .htmlCastingError("Failed to cast response to http response"))
             }
         }
         task.resume()
     }
     
-    func parseJSON( exchangeRateData: Data) -> ConversionModel? {
+    private func parseJSON( exchangeRateData: Data) -> ConversionModel? {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(ConversionData.self, from: exchangeRateData)
@@ -48,6 +54,8 @@ struct ConversionManager {
     }
 }
 
+// MARK: - Custom Types
+
 protocol ConversionManagerDelegate {
     func didGetRates(_ conversionManager: ConversionManager, rates: [String: Double])
     func didFailWithError(_ conversionManager: ConversionManager, error: ConversionManagerError)
@@ -55,6 +63,9 @@ protocol ConversionManagerDelegate {
 
 enum ConversionManagerError: Error {
     case decodingError(Error)
+    case noResponse(String)
+    case htmlCastingError(String)
+    case dataTaskError(Error)
 }
 
 // MARK: - Sample API Call
