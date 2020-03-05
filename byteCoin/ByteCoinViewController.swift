@@ -16,9 +16,15 @@ class ByteCoinViewController: UIViewController {
     var allRates = [String: Double]() { didSet {
         DispatchQueue.main.async {
             self.currencyPicker.reloadComponent(0)
+            if let usdRow = self.allRates.keys.sorted().firstIndex(of: "USD") {
+                assert(self.currencyPicker.numberOfRows(inComponent: 0) == self.allRates.count, "Picker row count doesn't match allRates count")
+                self.currencyPicker.selectRow(usdRow, inComponent: 0, animated: true)
+                self.currencyPicker.delegate?.pickerView?(self.currencyPicker, didSelectRow: usdRow, inComponent: 0)
+            }
         }
     }}
     
+    @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var resultBackgroundView: UIView! { didSet {
@@ -43,12 +49,17 @@ extension ByteCoinViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return allRates.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let allCurrencyKeys = Array(allRates.keys)
-        assert(allCurrencyKeys.count == pickerView.numberOfRows(inComponent: 0), "Number of picker rows doesn't match currency count")
-        if component == 0 {
-            return allCurrencyKeys[row]
-        } else {
-            return "?"
+        let allCurrencyKeysSorted = allRates.keys.sorted()
+        assert(allCurrencyKeysSorted.count == pickerView.numberOfRows(inComponent: 0), "Number of picker rows doesn't match currency count")
+        return allCurrencyKeysSorted[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let allCurrencyKeysSorted = allRates.keys.sorted()
+        assert(allCurrencyKeysSorted.count == pickerView.numberOfRows(inComponent: 0), "Number of picker rows doesn't match currency count")
+        let currencyString = allCurrencyKeysSorted[row]
+        currencyLabel.text = currencyString
+        if let value = allRates[currencyString] {
+            resultLabel.text = String(format: "%.2f", value)
         }
     }
 }
