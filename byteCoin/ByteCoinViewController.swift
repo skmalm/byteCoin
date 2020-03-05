@@ -12,8 +12,8 @@ class ByteCoinViewController: UIViewController {
     
     // MARK: - Properties
     
-    var conversionManager = ConversionManager()
-    var allRates = [String: Double]() { didSet {
+    private var conversionManager = ConversionManager()
+    private var allRates = [String: Double]() { didSet {
         DispatchQueue.main.async {
             self.currencyPicker.reloadComponent(0)
             if let usdRow = self.allRates.keys.sorted().firstIndex(of: "USD") {
@@ -24,10 +24,10 @@ class ByteCoinViewController: UIViewController {
         }
     }}
     
-    @IBOutlet weak var resultLabel: UILabel!
-    @IBOutlet weak var currencyLabel: UILabel!
-    @IBOutlet weak var currencyPicker: UIPickerView!
-    @IBOutlet weak var resultBackgroundView: UIView! { didSet {
+    @IBOutlet weak private var resultLabel: UILabel!
+    @IBOutlet weak private var currencyLabel: UILabel!
+    @IBOutlet weak private var currencyPicker: UIPickerView!
+    @IBOutlet weak private var resultBackgroundView: UIView! { didSet {
         resultBackgroundView.layer.cornerRadius = resultBackgroundView.frame.height / 2
     }}
     
